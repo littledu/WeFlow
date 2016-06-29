@@ -3,6 +3,7 @@ var qiniu = require('qiniu');
 var extract = require('extract-zip');
 var http = require('http');
 var fs = require('fs');
+var exec = require('child_process').exec;
 
 var nodeModulesPath = path.join(__dirname, 'node_modules');
 var nodeSassLocalPath = path.join(nodeModulesPath, 'node-sass.zip');
@@ -12,13 +13,20 @@ if (!process.env.WeFlowBuild) {
     downFile(nodeSassLocalPath, nodeSassRemotePath, function () {
         extract(nodeSassLocalPath, {dir: nodeModulesPath}, function (err) {
             console.log('extract success.');
+
+            nodeSassLocalPath = path.join(nodeModulesPath, 'node-sass');
+            var opt = {};
+            opt.cwd = nodeModulesPath;
+            runShell('npm install', opt, function(){
+                console.log('node-sass rebuild success.');
+            });
         });
     });
 }
 
 function downFile(localFilePath, remoteFilePath, callback) {
 
-    console.log(remoteFilePath + 'downloading...');
+    console.log(remoteFilePath + ' downloading...');
 
     var file = fs.createWriteStream(localFilePath);
 
@@ -35,6 +43,25 @@ function downFile(localFilePath, remoteFilePath, callback) {
 
     }).on('error', function (err) {
         console.log('Download fail: ', localFilePath, err);
+    });
+}
+
+function runShell(command, opt, callback) {
+    var ls = exec(command, opt, function (err, stdout, stderr) {
+        if (err) throw err;
+        callback && callback();
+    });
+
+    ls.stdout.on('data', function (data) {
+        console.log(data);
+    });
+
+    ls.stderr.on('data', function (data) {
+        console.log(data);
+    });
+
+    ls.on('exit', function (code) {
+        console.log('child process exited with code ' + code);
     });
 }
 
