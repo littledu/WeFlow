@@ -5,12 +5,12 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT "Feel free to contribute.") 
 
 > 一个基于 [tmt-workflow](https://github.com/weixin/tmt-workflow) 前端工作流的开发工具。
-> 官网：[http://weflow.io/](http://weflow.io/)  
-> 目前已支持了：微信游戏、微信广告等项目的 [第三方合作团队](http://ad.weixin.qq.com/learn/2-3-3--%E5%89%8D%E7%AB%AF%E5%B7%A5%E4%BD%9C%E6%B5%81) 的前端构建工作，如果你更习惯`命令行`操作，可以直接使用基于 Gulp 开发的 [tmt-workflow](https://github.com/weixin/tmt-workflow) :)
+> 官网：[https://weflow.io/](http://weflow.io/)  
+> 目前已支持了：微信游戏、微信广告等项目的 [第三方合作团队](http://ad.weixin.qq.com/learn/2-3-3--%E5%89%8D%E7%AB%AF%E5%B7%A5%E4%BD%9C%E6%B5%81) 的前端构建工作，如果你更习惯`命令行`操作，可以直接使用 WeFlow 的核心：基于 Gulp 开发的 [tmt-workflow](https://github.com/weixin/tmt-workflow) :)
 
 ## 安装使用
 
-[下载安装](https://github.com/weixin/WeFlow/releases)
+[Github Release 下载](https://github.com/weixin/WeFlow/releases) 或 [官网高速下载分流](https://weflow.io/#download)  
 (支持 macOS / Windows / Linux 操作系统)
 
 ## 界面预览
@@ -19,12 +19,12 @@
 
 ## 开发环境
 
-- Electron 版本：0.37.8
-- Node 版本    ：5.10.0
+- Electron 版本：v0.37.8
+- Node 版本    ：v5.10.0
 
 ## 设计稿和源码
 
-所有代码在 GitHub 开源，你可以 `fork` 进行定制，所有设计稿 Sketch 源文件可在 [Dribbble 项目页面获取](https://dribbble.com/hzlzh/projects/380016-WeFlow)
+所有代码在 [GitHub](https://github.com/weixin/WeFlow) 开源，你可以 `fork` 进行定制，所有设计稿 Sketch 源文件可在 [Dribbble 项目页](https://dribbble.com/hzlzh/projects/380016-WeFlow) 获取
 
 ## 参与贡献
  

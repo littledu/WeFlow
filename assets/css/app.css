@@ -594,6 +594,7 @@ html, body {
 }
 
 .setting__bd {
+    position: relative;
     padding: 0 15px;
 }
 
@@ -611,6 +612,16 @@ input:focus {
     border-radius: 2px;
     margin-bottom: 10px;
     padding: 0 1px;
+}
+
+.ui-text_short{
+    width: 179px;
+}
+
+.sftp{
+    position: absolute;
+    left: 211px;
+    top: 29px;
 }
 
 .ui-text input {
@@ -653,13 +664,15 @@ input:focus {
 
 .ui-checkbox label {
     position: relative;
+    margin-left: 7px;
+    -webkit-user-select: none;
 }
 
 .ui-checkbox input + label:before {
     content: '';
     position: absolute;
-    left: -27px;
-    top: 0;
+    left: -23px;
+    top: 1px;
     width: 14px;
     height: 14px;
     background-image: url(../img/checkbox.png);
@@ -668,10 +681,6 @@ input:focus {
 
 .ui-checkbox input:checked + label:before {
     background-image: url(../img/checkbox-on.png);
-}
-
-.ui-checkbox input {
-    margin-right: 10px;
 }
 
 .setting__subtitle {

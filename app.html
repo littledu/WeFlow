@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/app.css">
 
-    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=56909571" charset="UTF-8"></script>
     <script type="text/javascript">
 
         window.nodeRequire = require;
@@ -108,12 +107,12 @@
     <div class="bottom-fixed">
         <div class="tasks" id="js-tasks">
             <span data-task="dev" id="js-build-dev" class="tasks__button">开发</span>
-            <span data-task="dist" class="tasks__button">生产编译</span>
-            <span data-task="ftp" class="tasks__button">FTP 部署</span>
-            <span data-task="zip" class="tasks__button">Zip 打包</span>
+            <span data-task="dist" class="tasks__button">编译</span>
+            <span data-task="ftp" class="tasks__button">上传</span>
+            <span data-task="zip" class="tasks__button">打包</span>
         </div>
         <div class="logs" id="js-log">
-            <span class="icon icon-clean" id="js-clean-log"></span>
+            <span class="icon icon-clean" id="js-clean-log" title="清除日志"></span>
             <div class="logs__inner">
 
             </div>
@@ -134,7 +133,7 @@
 
 <div class="setting hide" id="js-setting">
     <a href="javascript:;" id="js-setting-close" class="icon icon-close"></a>
-    <a href="javascript:;" id="js-help" class="icon icon-help"></a>
+    <a href="https://github.com/weixin/weflow" id="js-help" class="icon icon-help"></a>
 
     <div class="setting__section" id="js-workspace">
         <div class="setting__hd">工作区路径</div>
@@ -172,16 +171,20 @@
     </div>
 
     <div class="setting__section">
-        <div class="setting__hd">FTP 配置</div>
+        <div class="setting__hd">设置</div>
         <div class="setting__bd">
-            <label class="setting__subtitle">FTP配置</label>
-            <div class="ui-text">
+            <label class="setting__subtitle">上传配置(默认为 FTP)</label>
+            <div class="ui-text ui-text_short">
                 <input type="text" name="ftp-host" placeholder="服务器地址" value="">
             </div>
-            <div class="ui-text">
+            <div class="ui-checkbox sftp">
+                <input type="checkbox" name="ftp-ssh" id="sftp">
+                <label for="sftp">使用 SFTP</label>
+            </div>
+            <div class="ui-text ui-text_short">
                 <input type="text" name="ftp-user" placeholder="用户名" value="">
             </div>
-            <div class="ui-text">
+            <div class="ui-text ui-text_short">
                 <input type="password" name="ftp-pass" placeholder="密码" value="">
             </div>
             <div class="ui-text">
@@ -222,5 +225,6 @@
 <script src="./assets/js/jquery.min.js"></script>
 <script src="./src/app.js"></script>
 <script src="./src/menu.js"></script>
+<script type="text/javascript" src="http://pingjs.qq.com/h5/stats.js" name="MTAH5" sid="500140708"></script>
 </body>
 </html>

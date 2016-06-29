@@ -5,30 +5,105 @@
     <title></title>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/app.css">
+
+    <script type="text/javascript">
+
+        window.nodeRequire = require;
+        delete window.require;
+        delete window.exports;
+        delete window.module;
+
+        // Pretend that cookies work
+        (function (document) {
+            var cookies = {};
+            document.__defineGetter__('cookie', function () {
+                var output = [];
+                for (var cookieName in cookies) {
+                    output.push(cookieName + "=" + cookies[cookieName]);
+                }
+                return output.join(";");
+            });
+            document.__defineSetter__('cookie', function (s) {
+                var indexOfSeparator = s.indexOf("=");
+                var key = s.substr(0, indexOfSeparator);
+                var value = s.substring(indexOfSeparator + 1);
+                cookies[key] = value;
+                return key + "=" + value;
+            });
+            document.clearCookies = function () {
+                cookies = {};
+            };
+
+            originalLocation = document.location;
+            // Pretend that we're hosted on an Internet Website
+            document.__defineGetter__('location', function () {
+                return {
+                    href: 'http://weflow.app/',
+                    protocol: 'http:',
+                    host: 'weflow.app',
+                    port: '',
+                    pathname: '/',
+                    search: '',
+                    hash: '',
+                    username: '',
+                    password: '',
+                    origin: 'http://weflow.app',
+                    reload: function () {
+                        return originalLocation.reload.apply(originalLocation, arguments);
+                    }
+                };
+            });
+
+            // Nobody sets location
+            document.__defineSetter__('location', function () {
+            })
+        })(document);
+
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://o4jiepyc4.qnssl.com/analytics.js', 'ga');
+        // qiniu CDN for speeding up ga.js -> https://www.google-analytics.com/analytics.js
+
+        // Get using version of WeFlow
+        var version = nodeRequire('./package.json').version;
+
+        ga('create', 'UA-24431632-7', 'auto');
+        ga('set', 'checkProtocolTask', null); // Disable file protocol checking.
+        ga('set', 'location', '/about.html'); // Allow file:// request for GA
+        ga('send', 'pageview');
+
+    </script>
 </head>
 <body>
 
 <div class="about" id="js-about">
     <div class="logo"></div>
     <div class="title">WeFlow</div>
-    <div class="version">Version 1.0.0</div>
-    <div class="desc">一个基于 <a href="https://github.com/weixin/tmt-workflow" id="js-tmtworkflow">tmt-workflow</a> 的前端工作流程序</div>
+    <div class="version">Version <span id="js-version">1.0.0</span></div>
+    <div class="desc">一个高效、强大、跨平台的前端开发工作流工具</div>
 
     <div class="about__buttom">
-        <div class="about__buttom-info">本 App 所有代码和设计稿均已开源</div>
+        <div class="about__buttom-info">所有 源代码 & 设计稿 采用 MIT 授权并开源</div>
         <div class="about__buttom-list" id="js-link">
-            <a href="https://github.com/weixin/WeFlow" class="about__buttom-list-item">GitHub</a>
+            <a href="https://github.com/weixin/WeFlow" class="about__buttom-list-item">Github</a>
             <a href="https://dribbble.com/hzlzh/projects/380016-WeFlow" class="about__buttom-list-item">Dribbble</a>
-            <a href="http://weflow.io/" class="about__buttom-list-item">官 网</a>
+            <a href="https://weflow.io/" class="about__buttom-list-item">官 网</a>
         </div>
     </div>
 </div>
-
 <script>
-    window.nodeRequire = require;
-    delete window.require;
-    delete window.exports;
-    delete window.module;
+        window.nodeRequire = require;
+        delete window.require;
+        delete window.exports;
+        delete window.module;
 </script>
 <script src="./assets/js/jquery.min.js"></script>
 <script>
@@ -49,6 +124,11 @@
 
         event.preventDefault();
     });
+
+    // Get using version of WeFlow
+    var version = nodeRequire('./package.json').version;
+    $('#js-version').text(version);
+
 </script>
 </body>
 </html>

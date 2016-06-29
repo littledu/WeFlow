@@ -27,6 +27,8 @@ build/Release
 node_modules
 dist
 
+# github template
+.github
 
 # Optional npm cache directory
 .npm
@@ -40,3 +42,4 @@ tmp_dev/**
 
 dist-win
 
+.DS_Store

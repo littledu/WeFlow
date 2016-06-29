@@ -108,8 +108,8 @@ var template = [
         label: '项目',
         submenu: [
             {
-                label: '当前项目配置',
-                accelerator: 'CmdOrCtrl+shift+,',
+                label: '进入当前项目配置',
+                accelerator: 'CmdOrCtrl+/',
                 click: function (item, focusedWindow) {
                     settingCurrentProject();
                 }
@@ -144,15 +144,21 @@ var template = [
         role: 'help',
         submenu: [
             {
-                label: 'WeFlow 帮助',
+                label: 'WeFlow 使用帮助',
                 click: function () {
                     electron.shell.openExternal('https://github.com/weixin/weflow');
                 }
             },
             {
-                label: '反馈…',
+                label: 'WeFlow 官网',
                 click: function () {
-                    electron.shell.openExternal('https://github.com/weixin/weflow/issue');
+                    electron.shell.openExternal('https://weflow.io');
+                }
+            },
+            {
+                label: '建议 或 反馈…',
+                click: function () {
+                    electron.shell.openExternal('https://github.com/weixin/weflow/issues');
                 }
             }
         ]
@@ -165,7 +171,7 @@ if (process.platform === 'darwin') {
         label: name,
         submenu: [
             {
-                label: '关于',
+                label: '关于 WeFlow',
                 click: function (item, focusedWindow) {
                     showAbout();
                 }
@@ -237,7 +243,7 @@ if (process.platform === 'darwin') {
     });
 
     helpItem.submenu.unshift({
-        label: '关于',
+        label: '关于 WeFlow',
         click: function (item, focusedWindow) {
             showAbout();
         }

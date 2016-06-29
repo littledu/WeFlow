@@ -5,7 +5,8 @@
     "user": "",
     "pass": "",
     "remotePath": "",
-    "includeHtml": true
+    "includeHtml": true,
+    "ssh": false
 },
   "livereload": true,
   "lazyDir": [
