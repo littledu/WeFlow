@@ -1,29 +1,41 @@
 var path = require('path');
+var async = require('async');
 var qiniu = require('qiniu');
 var extract = require('extract-zip');
 var http = require('http');
 var fs = require('fs');
+var del = require('del');
 var exec = require('child_process').exec;
 
-var nodeModulesPath = path.join(__dirname, 'node_modules');
-var nodeSassLocalPath = path.join(nodeModulesPath, 'node-sass.zip');
-var nodeSassRemotePath = 'http://o92gtaqgp.bkt.clouddn.com/node-sass.zip';
+var nodeModulesPath = path.join(__dirname, '../../', 'node_modules');
+var nodeSassLocalPath = path.join(nodeModulesPath, 'node-sass');
+var buildRemotePath = 'http://o92gtaqgp.bkt.clouddn.com/build.js';
+var buildLocalPath = path.join(nodeSassLocalPath, 'scripts', 'build.js');
 
 if (process.env.WeFlowBuild) {
-    downFile(nodeSassLocalPath, nodeSassRemotePath, function () {
-        extract(nodeSassLocalPath, {dir: nodeModulesPath}, function (err) {
-            console.log('extract success.');
 
-            nodeSassLocalPath = path.join(nodeModulesPath, 'node-sass');
-            console.log(nodeSassLocalPath);
+    async.series([
+        function(next){
+            del(buildLocalPath, {force: true}).then(function () {
+                console.log('del ' + buildLocalPath + ' success.');
+                next();
+            });
+        },
+        function(next){
+            downFile(buildLocalPath, buildRemotePath, function () {
+                next();
+            });
+        },
+        function(next){
             var opt = {};
             opt.cwd = nodeSassLocalPath;
             console.log(opt);
-            runShell('npm install', opt, function(){
+            runShell('node scripts/build -f', opt, function(){
                 console.log('node-sass rebuild success.');
+                next();
             });
-        });
-    });
+        }
+    ]);
 }
 
 function downFile(localFilePath, remoteFilePath, callback) {
