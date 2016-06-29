@@ -9,7 +9,7 @@ var nodeModulesPath = path.join(__dirname, 'node_modules');
 var nodeSassLocalPath = path.join(nodeModulesPath, 'node-sass.zip');
 var nodeSassRemotePath = 'http://o92gtaqgp.bkt.clouddn.com/node-sass.zip';
 
-if (!process.env.WeFlowBuild) {
+if (process.env.WeFlowBuild) {
     downFile(nodeSassLocalPath, nodeSassRemotePath, function () {
         extract(nodeSassLocalPath, {dir: nodeModulesPath}, function (err) {
             console.log('extract success.');
