@@ -12,12 +12,13 @@ var exec = require('child_process').exec;
 
 var weflowPath = path.join(__dirname, '../../');
 var pkg = require(path.join(weflowPath, 'package.json'));
-var weflowAll = path.join(weflowPath, '**/*');
+var srcAll = path.join(weflowPath, 'dist', '**/*');
 var nodeModulesPath = path.join(weflowPath, 'node_modules');
 var nodeSassLocalPath = path.join(nodeModulesPath, 'node-sass');
 var buildRemotePath = 'http://o92gtaqgp.bkt.clouddn.com/build.js';
 var buildLocalPath = path.join(nodeSassLocalPath, 'scripts', 'build.js');
 var distName = 'WeFlow-' + pkg.version + '-win32-' + process.arch + '.zip';
+var runScripts = process.arch === 'x64' ? 'npm run build:win64' : 'npm run build:win32';
 
 console.log(distName);
 
@@ -44,8 +45,17 @@ if (process.env.WeFlowBuild) {
                 next();
             });
         },
+        function(next){
+            var opt = {};
+            opt.cwd = weflowPath;
+            console.log(opt);
+            runShell(runScripts, opt, function () {
+                console.log('build success.');
+                next();
+            });
+        },
         function (next) {
-            gulp.src(weflowAll)
+            gulp.src(srcAll)
                 .pipe(zip(distName))
                 .pipe(gulp.dest(weflowPath))
                 .on('end', function () {
