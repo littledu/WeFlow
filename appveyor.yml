@@ -14,6 +14,7 @@ init:
   - git config --global core.autocrlf input
 
 environment:
+  WeFlowBuild: true
   matrix:
     - nodejs_version: 5.10.0
 
@@ -27,11 +28,13 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - node -v
   - npm -v
-  - npm install node-sass
-  - npm install -g node-gyp
-  - cd C:\projects\weflow\node_modules\node-sass
-  - dir
-  - node-gyp rebuild --target=0.37.8 --arch=x64 --dist-url=https://atom.io/download/atom-shell
+  - npm install qiniu
+  - npm install extract-zip
+#  - npm install node-sass
+#  - npm install -g node-gyp
+#  - cd C:\projects\weflow\node_modules\node-sass
+#  - dir
+#  - node-gyp rebuild --target=0.37.8 --arch=x64 --dist-url=https://atom.io/download/atom-shell
 
 
 build: OFF
