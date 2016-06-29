@@ -45,6 +45,7 @@
     "qiniu": "^6.1.11",
     "rc": "^1.1.6",
     "gulp-zip": "^3.2.0",
+    "gulp-tmtsprite": "^0.0.22",
     "gulp": "git://github.com/gulpjs/gulp#4.0"
   }
 }
