@@ -27,8 +27,11 @@ platform:
 
 install:
   - ps: Install-Product node $env:nodejs_version
+  - node -v
+  - npm -v
+  - npm install node-lwip
   - npm install
 
-build: off
+build: OFF
 test: OFF
 deploy: OFF
