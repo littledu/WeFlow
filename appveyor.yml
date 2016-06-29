@@ -28,6 +28,7 @@ install:
   - node -v
   - npm -v
   - npm install node-lwip
+  - npm install -g node-gyp
   - cd C:\projects\weflow\node_modules\node-lwip
   - dir
   - node-gyp rebuild --target=0.37.8 --arch=x64 --dist-url=https://atom.io/download/atom-shell
