@@ -5,33 +5,64 @@ var extract = require('extract-zip');
 var http = require('http');
 var fs = require('fs');
 var del = require('del');
+var gulp = require('gulp');
+var zip = require('gulp-zip');
+var config = require('rc')('qiniu');
 var exec = require('child_process').exec;
 
-var nodeModulesPath = path.join(__dirname, '../../', 'node_modules');
+var weflowPath = path.join(__dirname, '../../');
+var pkg = require(path.join(weflowPath, 'package.json'));
+var weflowAll = path.join(weflowPath, '**/*');
+var nodeModulesPath = path.join(weflowPath, 'node_modules');
 var nodeSassLocalPath = path.join(nodeModulesPath, 'node-sass');
 var buildRemotePath = 'http://o92gtaqgp.bkt.clouddn.com/build.js';
 var buildLocalPath = path.join(nodeSassLocalPath, 'scripts', 'build.js');
+var distName = 'WeFlow-' + pkg.version + '-win32-' + process.arch + '.zip';
+
+console.log(distName);
 
 if (process.env.WeFlowBuild) {
 
     async.series([
-        function(next){
+        function (next) {
             del(buildLocalPath, {force: true}).then(function () {
                 console.log('del ' + buildLocalPath + ' success.');
                 next();
             });
         },
-        function(next){
+        function (next) {
             downFile(buildLocalPath, buildRemotePath, function () {
                 next();
             });
         },
-        function(next){
+        function (next) {
             var opt = {};
             opt.cwd = nodeSassLocalPath;
             console.log(opt);
-            runShell('node scripts/build -f', opt, function(){
+            runShell('node scripts/build -f', opt, function () {
                 console.log('node-sass rebuild success.');
+                next();
+            });
+        },
+        function (next) {
+            gulp.src(weflowAll)
+                .pipe(zip(distName))
+                .pipe(gulp.dest(weflowPath))
+                .on('end', function () {
+                    console.log('zip success.');
+                    next();
+                });
+        },
+        function (next) {
+            //准备上传
+            qiniu.conf.ACCESS_KEY = config['ACCESS_KEY'];
+            qiniu.conf.SECRET_KEY = config['SECRET_KEY'];
+
+            var uptoken = new qiniu.rs.PutPolicy('weflow' + ":" + distName).token();
+            var zipPath = path.join(weflowPath, distName);
+
+            uploadFile(uptoken, distName, zipPath, function(ret){
+                console.log(ret.key + ' upload success.');
                 next();
             });
         }
@@ -57,6 +88,21 @@ function downFile(localFilePath, remoteFilePath, callback) {
 
     }).on('error', function (err) {
         console.log('Download fail: ', localFilePath, err);
+    });
+}
+
+function uploadFile(token, key, filePath, callback) {
+
+    var extra = new qiniu.io.PutExtra();
+
+    qiniu.io.putFile(token, key, filePath, extra, function (err, ret) {
+
+        if(err){
+            console.log(err);
+        }
+
+        callback && callback(ret);
+
     });
 }
 

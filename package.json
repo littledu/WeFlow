@@ -7,6 +7,7 @@
   "scripts": {
     "start": "electron main.js",
     "build:mac": "rimraf dist && electron-packager ./ WeFlow --platform=darwin --arch=x64 --icon=./assets/img/WeFlow.icns --overwrite --out ./dist/$npm_package_version --version=0.37.8",
+    "build:win32": "rimraf dist-win && electron-packager ./ WeFlow --platform=win32 --arch=x86 --icon=./assets/img/WeFlow.png --overwrite --out ./dist-win --version=0.37.8",
     "build:win64": "rimraf dist-win && electron-packager ./ WeFlow --platform=win32 --arch=x64 --icon=./assets/img/WeFlow.png --overwrite --out ./dist-win --version=0.37.8",
     "pack": "build --target dir",
     "dist": "rimraf dist && build"
@@ -41,6 +42,9 @@
     "async": "^2.0.0-rc.3",
     "del": "^2.2.0",
     "extract-zip": "^1.5.0",
-    "qiniu": "6.1.11"
+    "qiniu": "^6.1.11",
+    "rc": "^1.1.6",
+    "gulp-zip": "^3.2.0",
+    "gulp": "git://github.com/gulpjs/gulp#4.0"
   }
 }
