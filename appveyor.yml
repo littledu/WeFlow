@@ -30,7 +30,6 @@ install:
   - node -v
   - npm -v
   - npm install node-lwip
-  - npm install
 
 build: OFF
 test: OFF
