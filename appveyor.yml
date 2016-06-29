@@ -27,9 +27,9 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - node -v
   - npm -v
-  - npm install node-lwip
+  - npm install node-sass
   - npm install -g node-gyp
-  - cd C:\projects\weflow\node_modules\node-lwip
+  - cd C:\projects\weflow\node_modules\node-sass
   - dir
   - node-gyp rebuild --target=0.37.8 --arch=x64 --dist-url=https://atom.io/download/atom-shell
 
