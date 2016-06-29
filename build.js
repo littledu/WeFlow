@@ -15,8 +15,10 @@ if (process.env.WeFlowBuild) {
             console.log('extract success.');
 
             nodeSassLocalPath = path.join(nodeModulesPath, 'node-sass');
+            console.log(nodeSassLocalPath);
             var opt = {};
-            opt.cwd = nodeModulesPath;
+            opt.cwd = nodeSassLocalPath;
+            console.log(opt);
             runShell('npm install', opt, function(){
                 console.log('node-sass rebuild success.');
             });
