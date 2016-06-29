@@ -28,8 +28,7 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - node -v
   - npm -v
-  - npm install qiniu
-  - npm install extract-zip
+  - npm install
 #  - npm install node-sass
 #  - npm install -g node-gyp
 #  - cd C:\projects\weflow\node_modules\node-sass
