@@ -1,0 +1,34 @@
+# version format
+version: "{build}"
+
+# branches to build
+branches:
+  only:
+    - master
+
+# Build worker image (VM template)
+image: Visual Studio 2015
+
+# scripts that are called at very beginning, before repo cloning
+init:
+  - git config --global core.autocrlf input
+
+environment:
+  TMTBUILD: true
+  qiniu_ACCESS_KEY:
+    secure: T10k13x11WzEOXvMqo8pXNK4fMb2+iSqj6ate+fhL7pwWxySeKhsoxjZ2GpAAsBU
+  qiniu_SECRET_KEY:
+    secure: XRWyQSCo7yWHH7LN5AUlFd3UYl/T6ZAc7WiK4NJJGAKocvmEm7ait8jm+y51CZ6c
+  matrix:
+    - nodejs_version: 5.10.0
+
+platform:
+  - x86
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+
+build: off
+test: OFF
+deploy: OFF
