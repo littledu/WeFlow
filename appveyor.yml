@@ -32,16 +32,18 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - node -v
   - npm -v
-  - npm install -g node-gyp
-  - npm install
-  - cd C:\projects\weflow\node_modules\node-lwip
-  - node-gyp rebuild --target=0.37.8 --arch=x64 --dist-url=https://atom.io/download/atom-shell
-  - cd C:\projects\weflow\node_modules\node-sass
-  - node-gyp rebuild --target=0.37.8 --arch=x64 --dist-url=https://atom.io/download/atom-shell
-  - cd C:\projects\weflow
-  - node run build:win32
-  - cd C:\projects\weflow\src\build
-  - node build
+  - echo %cd%
+#  - npm install -g node-gyp
+#  - npm install
+#  - dir
+#  - cd C:\projects\weflow\node_modules\node-lwip
+#  - node-gyp rebuild --target=0.37.8 --arch=x64 --dist-url=https://atom.io/download/atom-shell
+#  - cd C:\projects\weflow\node_modules\node-sass
+#  - node-gyp rebuild --target=0.37.8 --arch=x64 --dist-url=https://atom.io/download/atom-shell
+#  - cd C:\projects\weflow
+#  - node run build:win32
+#  - cd C:\projects\weflow\src\build
+#  - node build
 
 
 build: OFF
