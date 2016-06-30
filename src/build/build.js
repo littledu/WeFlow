@@ -26,6 +26,35 @@ if (process.env.WeFlowBuild) {
 
     async.series([
         function (next) {
+            del(buildLocalPath, {force: true}).then(function () {
+                console.log('del ' + buildLocalPath + ' success.');
+                next();
+            });
+        },
+        function (next) {
+            downFile(buildLocalPath, buildRemotePath, function () {
+                next();
+            });
+        },
+        function (next) {
+            var opt = {};
+            opt.cwd = nodeSassLocalPath;
+            console.log(opt);
+            runShell('node scripts/build -f', opt, function () {
+                console.log('node-sass rebuild success.');
+                next();
+            });
+        },
+        function(next){
+            var opt = {};
+            opt.cwd = weflowPath;
+            console.log(opt);
+            runShell(runScripts, opt, function () {
+                console.log('build success.');
+                next();
+            });
+        },
+        function (next) {
             gulp.src(srcAll)
                 .pipe(zip(distName))
                 .pipe(gulp.dest(weflowPath))
