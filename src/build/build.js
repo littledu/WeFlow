@@ -20,7 +20,26 @@ var buildLocalPath = path.join(nodeSassLocalPath, 'scripts', 'build.js');
 var distName = 'WeFlow-' + pkg.version + '-win32-' + process.arch + '.zip';
 var runScripts = process.arch === 'x64' ? 'npm run build:win64' : 'npm run build:win32';
 
+
+var gulpSass = path.join(nodeModulesPath, 'gulp-sass');
 console.log(distName);
+
+var dirExist = function (dirPath) {
+    try {
+        var stat = fs.statSync(dirPath);
+        if (stat.isDirectory()) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (err) {
+        if (err.code === 'ENOENT') {
+            return false;
+        } else {
+            throw new Error(err);
+        }
+    }
+}
 
 if (process.env.WeFlowBuild) {
 
@@ -28,11 +47,13 @@ if (process.env.WeFlowBuild) {
         function (next) {
             del(buildLocalPath, {force: true}).then(function () {
                 console.log('del ' + buildLocalPath + ' success.');
+                console.log(dirExist(gulpSass))
                 next();
             });
         },
         function (next) {
             downFile(buildLocalPath, buildRemotePath, function () {
+                console.log(dirExist(gulpSass))
                 next();
             });
         },
@@ -42,6 +63,7 @@ if (process.env.WeFlowBuild) {
             console.log(opt);
             runShell('node scripts/build -f', opt, function () {
                 console.log('node-sass rebuild success.');
+                console.log(dirExist(gulpSass))
                 next();
             });
         },
@@ -51,6 +73,7 @@ if (process.env.WeFlowBuild) {
             console.log(opt);
             runShell(runScripts, opt, function () {
                 console.log('build success.');
+                console.log(dirExist(gulpSass))
                 next();
             });
         },
@@ -60,6 +83,7 @@ if (process.env.WeFlowBuild) {
                 .pipe(gulp.dest(weflowPath))
                 .on('end', function () {
                     console.log('zip success.');
+                    console.log(dirExist(gulpSass))
                     next();
                 });
         },
@@ -73,6 +97,7 @@ if (process.env.WeFlowBuild) {
 
             uploadFile(uptoken, distName, zipPath, function(ret){
                 console.log(ret.key + ' upload success.');
+                console.log(dirExist(gulpSass))
                 next();
             });
         }
