@@ -21,7 +21,7 @@ var distName = 'WeFlow-' + pkg.version + '-win32-' + process.arch + '.zip';
 var runScripts = process.arch === 'x64' ? 'npm run build:win64' : 'npm run build:win32';
 
 
-var gulpSass = path.join(nodeModulesPath, 'gulp-sass');
+var gulpSass = path.join(weflowPath, 'dist', 'WeFlow-win32-ia32', 'resources', 'app', 'node_modules', 'gulp-sass');
 console.log(distName);
 
 var dirExist = function (dirPath) {
