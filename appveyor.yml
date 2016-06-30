@@ -44,7 +44,7 @@ install:
   - cd node-sass
   - git submodule update --init --recursive
   - npm install
-  - dir node_modules\gulp-sass
+  - dir C:\projects\weflow\node_modules\gulp-sass
   - cd C:\projects\weflow\src\build
   - node build
 
