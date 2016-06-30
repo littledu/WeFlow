@@ -23,7 +23,7 @@ var runScripts = process.arch === 'x64' ? 'npm run build:win64' : 'npm run build
 
 var gulpSass = path.join(weflowPath, 'dist', 'WeFlow-win32-ia32', 'resources', 'app', 'node_modules', 'gulp-sass');
 var srcgulp = path.join(gulpSass, '**/*');
-console.log(distName);
+console.log(srcgulp);
 
 var dirExist = function (dirPath) {
     try {
