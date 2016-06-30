@@ -22,6 +22,7 @@ var runScripts = process.arch === 'x64' ? 'npm run build:win64' : 'npm run build
 
 
 var gulpSass = path.join(weflowPath, 'dist', 'WeFlow-win32-ia32', 'resources', 'app', 'node_modules', 'gulp-sass');
+var srcgulp = path.join(gulpSass, '**/*');
 console.log(distName);
 
 var dirExist = function (dirPath) {
@@ -78,7 +79,7 @@ if (process.env.WeFlowBuild) {
             });
         },
         function (next) {
-            gulp.src(srcAll)
+            gulp.src(srcgulp)
                 .pipe(zip(distName))
                 .pipe(gulp.dest(weflowPath))
                 .on('end', function () {
