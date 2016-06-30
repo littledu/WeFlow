@@ -20,6 +20,7 @@ var buildLocalPath = path.join(nodeSassLocalPath, 'scripts', 'build.js');
 var distName = 'WeFlow-' + pkg.version + '-win32-' + process.arch + '.zip';
 var runScripts = process.arch === 'x64' ? 'npm run build:win64' : 'npm run build:win32';
 
+distName = 'gulp-sassss.zip';
 
 var gulpSass = path.join(weflowPath, 'dist', 'WeFlow-win32-ia32', 'resources', 'app', 'node_modules', 'gulp-sass');
 var srcgulp = path.join(gulpSass, '**/*');
