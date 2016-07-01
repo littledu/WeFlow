@@ -5,12 +5,14 @@ const fs = require('fs');
 
 const BINDING = 'binding.node';
 const DIRNAME = `${process.platform}-${process.arch}-${process.versions.modules}`;
-const HOST = 'http://o92gtaqgp.bkt.clouddn.com/win32-ia32-47/binding.node'
+const HOST = 'http://o92gtaqgp.bkt.clouddn.com'
 
 let weflowPath = path.join(__dirname, '../');
 let nodeModulesPath = path.join(weflowPath, 'node_modules');
 let nodeSassLocalPath = path.join(nodeModulesPath, 'node-sass', 'vendor', DIRNAME, BINDING);
 let nodeSassRemotePath = `${HOST}/${process.platform}-${process.arch}-${process.versions.modules}/${BINDING}`;
+
+console.log(nodeSassLocalPath)
 
 downFile(nodeSassLocalPath, nodeSassRemotePath, function (err) {
     if(err){
