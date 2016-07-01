@@ -12,14 +12,12 @@ let nodeModulesPath = path.join(weflowPath, 'node_modules');
 let nodeSassLocalPath = path.join(nodeModulesPath, 'node-sass', 'vendor', DIRNAME, BINDING);
 let nodeSassRemotePath = `${HOST}/${process.platform}-${process.arch}-${process.versions.modules}/${BINDING}`;
 
-console.log(nodeSassLocalPath)
 
 downFile(nodeSassLocalPath, nodeSassRemotePath, function (err) {
     if(err){
         throw new Error(err);
     }
     console.log('Download success: ', nodeSassLocalPath);
-    next();
 });
 
 

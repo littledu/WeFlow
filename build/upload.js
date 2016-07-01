@@ -11,7 +11,6 @@ const gulp = require('gulp');
 const zip = require('gulp-zip');
 const config = require('rc')('qiniu');
 
-
 let weflowPath = path.join(__dirname, '../');
 let srcAll = path.join(weflowPath, 'dist', '**/*');
 let pkg = require(path.join(weflowPath, 'package.json'));
