@@ -16,9 +16,6 @@ addons:
     packages:
     - g++-4.8
 before_script:
-#  - npm install -g gulpjs/gulp#4.0
-#  - cd project
-#  - npm install
    - npm install qiniu
    - npm install rc
 
