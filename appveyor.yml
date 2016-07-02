@@ -44,7 +44,7 @@ install:
   - node build\downBinding
   - if "%PLATFORM%" == "x64" npm run build:win64
   - if "%PLATFORM%" == "x86" npm run build:win32
-  - ps: Compress-Archive -Path node_modules -DestinationPath dist.zip
+  - ps: Compress-Archive -Path dist -DestinationPath dist.zip
   - node build\upload
 
 
