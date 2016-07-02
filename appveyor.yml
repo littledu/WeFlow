@@ -15,6 +15,7 @@ init:
 
 environment:
   WeFlowBuild: true
+
   qiniu_ACCESS_KEY:
       secure: T10k13x11WzEOXvMqo8pXNK4fMb2+iSqj6ate+fhL7pwWxySeKhsoxjZ2GpAAsBU
   qiniu_SECRET_KEY:
@@ -36,15 +37,15 @@ install:
   - npm -v
   - npm install -g node-gyp
   - npm install
+  - cd node_modules\node-lwip
+  - if "%PLATFORM%" == "x64" node-gyp rebuild --target=0.37.8 --arch=x64 --dist-url=https://atom.io/download/atom-shell
+  - if "%PLATFORM%" == "x86" node-gyp rebuild --target=0.37.8 --arch=ia32 --dist-url=https://atom.io/download/atom-shell
+  - cd ..\..\
+  - node build\downBinding
+  - if "%PLATFORM%" == "x64" npm run build:win64
+  - if "%PLATFORM%" == "x86" npm run build:win32
   - ps: Compress-Archive -Path node_modules -DestinationPath dist.zip
-#  - cd node_modules\node-lwip
-#  - if "%PLATFORM%" == "x64" node-gyp rebuild --target=0.37.8 --arch=x64 --dist-url=https://atom.io/download/atom-shell
-#  - if "%PLATFORM%" == "x86" node-gyp rebuild --target=0.37.8 --arch=ia32 --dist-url=https://atom.io/download/atom-shell
-#  - cd ..\..\
-#  - node build\downBinding
-#  - if "%PLATFORM%" == "x64" npm run build:win64
-#  - if "%PLATFORM%" == "x86" npm run build:win32
-#  - node build\upload
+  - node build\upload
 
 
 build: OFF
