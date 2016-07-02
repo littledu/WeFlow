@@ -16,17 +16,18 @@ let srcAll = path.join(weflowPath, 'dist', '**/*');
 let pkg = require(path.join(weflowPath, 'package.json'));
 let distName = `WeFlow-${pkg.version}-${process.platform}-${process.arch}.zip`;
 
+distName = 'dist.zip';
 
 async.series([
-    function (next) {
-        gulp.src(srcAll, {dot: true})
-            .pipe(zip(distName))
-            .pipe(gulp.dest(weflowPath))
-            .on('end', function () {
-                console.log('zip success.');
-                next();
-            });
-    },
+    // function (next) {
+    //     gulp.src(srcAll, {dot: true})
+    //         .pipe(zip(distName))
+    //         .pipe(gulp.dest(weflowPath))
+    //         .on('end', function () {
+    //             console.log('zip success.');
+    //             next();
+    //         });
+    // },
     function (next) {
         //准备上传
         qiniu.conf.ACCESS_KEY = config['ACCESS_KEY'];
