@@ -7,8 +7,8 @@
   "scripts": {
     "start": "electron main.js",
     "build:mac": "rimraf dist && electron-packager ./ WeFlow --platform=darwin --arch=x64 --icon=./assets/img/WeFlow.icns --overwrite --out ./dist/$npm_package_version --version=0.37.8 --ignore='(.github|.DS_Store)'",
-    "build:win32": "rimraf dist && electron-packager ./ WeFlow --platform=win32 --arch=ia32 --icon=./assets/img/WeFlow.png --overwrite --out ./dist --version=0.37.8 --ignore='(.github|.DS_Store)'",
-    "build:win64": "rimraf dist && electron-packager ./ WeFlow --platform=win32 --arch=x64 --icon=./assets/img/WeFlow.png --overwrite --out ./dist --version=0.37.8 --ignore='(.github|.DS_Store)'",
+    "build:win32": "rimraf dist && electron-packager ./ WeFlow --platform=win32 --arch=ia32 --icon=./assets/img/WeFlow.png --overwrite --out ./dist --version=0.37.8 --ignore=.github",
+    "build:win64": "rimraf dist && electron-packager ./ WeFlow --platform=win32 --arch=x64 --icon=./assets/img/WeFlow.png --overwrite --out ./dist --version=0.37.8 --ignore=.github",
     "pack": "build --target dir",
     "dist": "rimraf dist && build"
   },
