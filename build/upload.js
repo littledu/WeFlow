@@ -16,9 +16,10 @@ let srcAll = path.join(weflowPath, 'dist', '**/*');
 let pkg = require(path.join(weflowPath, 'package.json'));
 let distName = `WeFlow-${pkg.version}-${process.platform}-${process.arch}.zip`;
 
+
 async.series([
     function (next) {
-        gulp.src(srcAll)
+        gulp.src(srcAll, {dot: true})
             .pipe(zip(distName))
             .pipe(gulp.dest(weflowPath))
             .on('end', function () {
