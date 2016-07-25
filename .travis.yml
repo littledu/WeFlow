@@ -1,4 +1,18 @@
 language: node_js
+cache:
+  directories:
+    - node_modules # Speed up npm install
+node_js:
+  - "5.10.0"
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
 before_script:
-   - echo $BUCKET_NAME
-   - node build/upload.js
+  - npm install
+  - npm run build:mac
+script: node build/upload.js

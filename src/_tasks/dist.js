@@ -54,7 +54,7 @@ function dist(projectPath, log, callback) {
 
     if (config.supportREM) {
         postcssOption = [
-            postcssAutoprefixer({browsers: ['last 5 versions']}),
+            postcssAutoprefixer({browsers: ['last 8 versions']}),
             postcssPxtorem({
                 root_value: '20', // 基准值 html{ font-zise: 20px; }
                 prop_white_list: [], // 对所有 px 值生效
@@ -63,7 +63,7 @@ function dist(projectPath, log, callback) {
         ]
     } else {
         postcssOption = [
-            postcssAutoprefixer({browsers: ['last 5 versions']})
+            postcssAutoprefixer({browsers: ['last 8 versions']})
         ]
     }
 
