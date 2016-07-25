@@ -2,21 +2,7 @@ language: node_js
 
 node_js:
   - "5.10.0"
-env:
-  matrix:
-  - CXX=g++-4.8
-  qiniu_ACCESS_KEY:
-    secure: ZjHi3O3VjjYBw+WPnpt0Zm3ZG7enFzvTFdDe1TjyQoD7QXuxsqOMko4d7nV/BC2B7cZArdYW78zTUc+ZLRDX0bN6Ng/djB6XM1LTdhB7F3V5nbVC7WdvxWuIFETDZaxqSdIPmKZ7wslawy87/VVfhEskAcRoqNarz4I6GdZy7X0Sj4KggA6Sp27lExMX/idno+Lp9WDVw48/xmohmeOk+ht3g1ItbjojBGC89g7jVy2Em8M1N2mPTT0Z+cXXavd1868Yu022fP/q+2xD+zxOIM5TAXjGuP/YQVcKpPTSHkuSy4Jhb6C6O31P1UWY8t1m0KQIrX95Eu6Y2QUaiNjtCa0c/kBqX95cV6qIRPuRgNoDaPhR4ELPVdI8JrwD78hQxB8JU2rGxr9LQx5AX0NS/LnwTCoy0pPCA/imLCT4UO+wbKjeZ95sOgy9G83w1VK9Qi4bU2kVp/uB2VKy3OB+yfBzYjt0zG5dx09OpPDCaREa5L9KkvS5TqxHp3MfEYhcwSeCIInTWAUa36xhcUkOqa1yUOlujqHVzsgs2Fjfevsv9/EF1nXc6ASU55pgNYZHXDc1BnddlKBqY30My0GfLwDlysjpWGDKbn9zDT1SJ74U2hgRELLQhsVr+nudV9N8d9PHneUGxQP7GpwM7r4i40O4l2u705vwsz2cxKGbw2o=
-  qiniu_SECRET_KEY:
-    secure: w+EzUcA6FagfBsO7wnNgoEbJo0g2TyhNefcFz4JLHc7G+Xi/avGxrPwR6T5feUIHsArmjOZOXJaCXCpwLz8u6NJNTqULiYfMaZ+SrBZc7AJyl5KGzV1x1nXW8TjHVWumk3VzWFG14ZjtKElV9frsqD89WFtuFbv/cBhtxc1lupsao6Qfmk6v1y6NlwUlzrsrvByTjvapfF19X93b6sjYeceCcEHhvulw/tfqJWzeCc6RR0BvXuVtMzQJaH9Bck5MtKV2W0yaUWBx17vRnHMn+8GMACI7NbrTLZsFN9xKBreAPCdD0lm7BkMQDxWjIkUQhysc6iIBlOMk02XJ9upUGosAnOt85ksUUCM2RODEeqq2JHPbb5idpmV9ru9pk0Td0byl6xVHIFQsC8AjCCwRkqZ3zd0tguHoAUQPe4ibe2bVl65ag3GTsCzBF1LzhFTm+xsO5hCpNuLEIVP8HhO7+v9dJEiGRq2vvkKEavvqvsUqFPU7mQvH+VDOmfiKKoT3N6oGjWS4cKrGouGnYL5vLWlBeZXsFx3mdXPLy4DJF3qW/qmOgVAaiTa36Xg7c9EO9oRLd28tDEoTqZ+DRAlCleQhvrt31o2L6xQubGeBhnn/U9sDl2wZMITIc+03Qc1DSRxCK0ACxCGYjeMe47t31mBj5vnEadG1eGpFtfSo3kk=
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
 before_script:
-   - npm install qiniu
-   - npm install rc
-
-script: node build/upload
+   - echo $BUCKET_NAME
+   - sed -i "s/ACCESS_KEY/$BUCKET_NAME/" build/upload.js
+   - cat build/upload.js
