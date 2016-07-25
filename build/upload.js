@@ -1,23 +1,26 @@
 "use strict";
 
-const path = require('path');
+// const path = require('path');
 // const async = require('async');
-const qiniu = require('qiniu');
+// const qiniu = require('qiniu');
 // const extract = require('extract-zip');
-const http = require('http');
-const fs = require('fs');
+// const http = require('http');
+// const fs = require('fs');
 // const del = require('del');
 // const gulp = require('gulp');
 // const rename = require('gulp-rename');
-const config = require('rc')('qiniu');
+// const config = require('rc')('qiniu');
 
 // let weflowPath = path.join(__dirname, '../');
 // let distZip = path.join(weflowPath, 'dist.zip');
 // let pkg = require(path.join(weflowPath, 'package.json'));
 // let distName = `WeFlow-${pkg.version}-${process.platform}-${process.arch}.zip`;
 
-console.log(config['ACCESS_KEY'])
-console.log(config['SECRET_KEY'])
+console.log(process.env.BUCKET_NAME);
+
+
+// config['ACCESS_KEY'] = '';
+// config['SECRET_KEY'] = '';
 
 // async.series([
 //     function (next) {

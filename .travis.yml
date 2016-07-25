@@ -1,5 +1,4 @@
 language: node_js
 before_script:
    - echo $BUCKET_NAME
-   - sed -i "s/ACCESS_KEY/$BUCKET_NAME/" build/upload.js
-   - cat build/upload.js
+   - node build/upload.js
