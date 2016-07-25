@@ -1,7 +1,4 @@
 language: node_js
-
-node_js:
-  - "5.10.0"
 before_script:
    - echo $BUCKET_NAME
    - sed -i "s/ACCESS_KEY/$BUCKET_NAME/" build/upload.js
