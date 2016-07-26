@@ -14,7 +14,12 @@ const config = require('rc')('qiniu');
 let weflowPath = path.join(__dirname, '../');
 let distZip = path.join(weflowPath, 'dist.zip');
 let pkg = require(path.join(weflowPath, 'package.json'));
-let distName = `WeFlow-${pkg.version}-${process.platform}-${process.arch}.zip`;
+
+let distName = `WeFlow-${pkg.version}-${process.platform}-${process.arch}.zip`;、
+
+if(process.env.ARCH === 'x86'){
+    distName = `WeFlow-${pkg.version}-x86-${process.arch}.zip`;
+}
 
 if (process.env.ACCESS_KEY && process.env.SECRET_KEY) {
     config['ACCESS_KEY'] = process.env.ACCESS_KEY;
