@@ -18,9 +18,6 @@ addons:
     - g++-4.8
 before_script:
   - npm install
-  - if [[ "$ARCH" == "x86" ]]; then
-    - npm run build:linux32
-    else
-    - npm run build:linux64
+  - if [[ "$ARCH" == "x86" ]]; then npm run build:linux32 else npm run build:linux64
   fi
 script: node build/upload.js
